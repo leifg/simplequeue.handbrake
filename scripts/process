@@ -24,7 +24,7 @@ output_filename = File.basename(absolut_input_filename).sub(input_file_ext,confi
 output_dir = config['output_dir']
 absolut_input_filename = Escape.shell_single_word(absolut_input_filename)
 
-if !output_dir =~ /\//
+if not output_dir =~ /\/$/
   outputdir = outputdir + "/"
 end 
 
