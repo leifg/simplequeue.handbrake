@@ -1,3 +1,18 @@
 #!/usr/bin/env ruby
+require 'rubygems'
+require 'logger'
+require 'configatron'
+require 'escape'
+require 'fileutils'
 
-puts "successfully executed #{ARGV[0]}"
+log = Logger.new(File.expand_path(File.dirname(__FILE__) + "/../log/success.log"))
+config = configatron.configure_from_yaml(File.expand_path(File.dirname(__FILE__) + "/../config/config.yml"))
+
+absolut_input_filename = ARGV[0]
+
+if (config['move'])
+  move_folder = Escape.shell_single_word config['move_folder']
+  log.info("moving file #{absolut_input_filename} to folder #{move_folder}")
+  
+  FileUtils.mv absolut_input_filename, move_folder
+end
