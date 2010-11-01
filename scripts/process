@@ -1,5 +1,42 @@
 #!/usr/bin/env ruby
+require 'rubygems'
+require 'logger'
+require 'configatron'
+require 'escape'
 
-puts ARGV[0]
-puts "waiting 10 seconds"
-sleep 10
+start_time = Time.now  
+config = configatron.configure_from_yaml(File.expand_path(File.dirname(__FILE__) + "/../config/config.yml"))
+
+log = Logger.new(File.expand_path(File.dirname(__FILE__) + "/../log/process.log"))
+log.level = Logger::DEBUG
+
+absolut_input_filename = ARGV[0].chomp
+
+log.debug("processing file: #{absolut_input_filename}")
+
+if (not absolut_input_filename or not File.exist?(absolut_input_filename))
+  log.error("File #{absolut_input_filename} doesn't exist")
+  exit 1
+end
+
+input_file_ext = File.extname(absolut_input_filename)
+output_filename = File.basename(absolut_input_filename).sub(input_file_ext,config['output_ext'])
+output_dir = config['output_dir']
+absolut_input_filename = Escape.shell_single_word(absolut_input_filename)
+
+if not output_dir =~ /\/$/
+  outputdir = outputdir + "/"
+end 
+
+absolut_output_filenam = Escape.shell_single_word(output_dir+output_filename)
+
+handbrake_command = config['handbrake_cli'] +" -i "+ absolut_input_filename +" -o "+absolut_output_filenam+" --preset="+config['preset']
+log.info("run following command for conversion: "+handbrake_command)
+log.info("--- starting conversion ---")
+
+success = system(handbrake_command)
+end_time = Time.now
+
+log.info("conversion ended with: "+success.to_s)
+log.info("conversion of file "+absolut_input_filename+" took " + (end_time - start_time).to_s + " seconds")
+log.info("--- end of conversion ---")  
