@@ -4,3 +4,17 @@ queue_prefix: queue.txt
 growlnotify_cli: /usr/local/bin/growlnotify
 
 #add custom parameters for your processing here
+# converting
+handbrake_cli: /Users/leifg/apps/bin/HandBrakeCLI
+pipe_output:
+preset: AppleTV
+output_dir: /Users/leifg/Movies/add_to_itunes/
+output_ext: .m4v
+move: true
+move_folder: /Users/leifg/Movies/convert_ingoing/finished/
+ 
+# watch folders
+extensions: mkv,avi
+watch_folders: /Users/leifg/Movies/finished_tvshows/,/Users/leifg/Documents/Dropbox/incoming/
+watch_interval: 1
+convert_folder: /Users/leifg/Movies/convert_ingoing/
