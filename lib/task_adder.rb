@@ -12,6 +12,7 @@ class TaskAdder
   end
 
   def add (input, prio, task_filter = TaskFilter.default_filter)
+    puts "queue_dir #{@queue_dir}"
     if not File.exist? @queue_dir 
       raise IOError, "Directory for queue (#{queue_dir}) does not exist"
     end

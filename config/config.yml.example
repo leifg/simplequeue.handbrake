@@ -1,0 +1,17 @@
+# general queueing
+queue_dir: <absolute path to directory where queue files should be stored>
+queue_prefix: <prefix of queue file e.g. queue.txt>
+growlnotify_cli: <absolute path to growlonotify (leave empty to disable) see more at: http://growl.info/extras.php>
+
+#add custom parameters for your processing here
+handbrake_cli: <absolute path to Handbrake Command Line Client, download here: http://handbrake.fr/downloads2.php)
+preset: <preset you'd like to use for conversion e.g. AppleTV, see more at: http://trac.handbrake.fr/wiki/CLIGuide>
+output_dir: <absolute path to output dir>
+output_ext: <extension of output file, e.g. .m4v>
+move: <boolean if origin files should be moved after conversion>true
+move_folder: <absolute path to folder where origin files should be moved>
+
+# watch folders
+# to run the watch folder script, execute dir_watch.rb
+extensions: <file extensions to watch (separated by comma) e.g. mkv,avi>
+watch_folders: <absolute path to folders to watch (separated by comma)>

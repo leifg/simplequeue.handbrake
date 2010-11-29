@@ -1,4 +1,6 @@
-log/.*\.log$
-queue/
+syntax: glob
+
+log/*.log
+queue/*
 .DS_Store
 config/config.yml

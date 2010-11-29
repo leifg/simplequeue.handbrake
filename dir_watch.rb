@@ -12,8 +12,7 @@ config = configatron.configure_from_yaml(File.expand_path(File.dirname(__FILE__)
 if (config)
   dws = Array.new
   
-  all_folders = config['watch_folders'].split ','
-  move_folder = config['convert_folder']
+  all_folders = config['watch_folders'].split ',' 
   
   all_folders.each do |dir|
     dw = DirectoryWatcher.new dir, :glob => "**/*.{#{config['extensions']}}", :interval => config['watch_interval']
