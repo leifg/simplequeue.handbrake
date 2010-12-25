@@ -25,7 +25,7 @@ output_dir = config['output_dir']
 absolut_input_filename = Escape.shell_single_word(absolut_input_filename)
 
 if not output_dir =~ /\/$/
-  outputdir = outputdir + "/"
+  output_dir = outputdir + "/"
 end 
 
 absolut_output_filenam = Escape.shell_single_word(output_dir+output_filename)

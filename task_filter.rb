@@ -16,7 +16,11 @@ class TaskFilter
     
     def task_filter.filter(task_name, prio, current_date);
       if (prio < 0)
-        prio = 9
+        prio = 5
+        
+        if (task_name.downcase.include? "true blood")
+          prio = 9
+        end
       end
 
       return prio
